@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Freyster.dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">FREYSTER<span>.DEV</span></a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 800px; text-align: center;">
+        <h2 class="section-title">Private Consultation</h2>
+        <p style="margin-bottom: 50px; color: #888;">
+            For general inquiries regarding real estate development, investment opportunities in Taiwan, Canada, or Switzerland, please contact us.
+        </p>
+
+        <form onsubmit="sendContact(event)" style="text-align: left;">
+            <input type="hidden" name="interest" value="General Contact Page">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <input type="text" name="name" placeholder="FULL NAME" required>
+                <input type="email" name="email" placeholder="EMAIL ADDRESS" required>
+            </div>
+            
+            <textarea name="message" rows="6" placeholder="HOW CAN WE ASSIST YOU?" required></textarea>
+            
+            <div style="text-align: center;">
+                <button type="submit" class="btn-gold">Send Request</button>
+            </div>
+            <p id="form-status" style="margin-top: 20px; text-align: center; display: none;"></p>
+        </form>
+
+        <div style="margin-top: 80px; border-top: 1px solid #222; padding-top: 40px;">
+            <p style="color: var(--gold); margin-bottom: 10px;">DIRECT</p>
+            <p><a href="mailto:freytser.dev@gmail.com">freytser.dev@gmail.com</a></p>
+            <br>
+            <p style="color: var(--gold); margin-bottom: 10px;">SOCIAL</p>
+            <p><a href="https://youtube.com/@freyster.dev" target="_blank">@freyster.dev</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

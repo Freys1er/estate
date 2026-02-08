@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREYSTER.DEV | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; color: var(--gold); }
+        
+        .flags { display: flex; gap: 40px; margin-top: 40px; }
+        .flag-box { text-align: center; }
+        .flag-icon { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+        .flag-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FREYSTER<span>.DEV</span></div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Global Standard.</h1>
+        <p style="font-size: 1.2rem; letter-spacing: 1px; color: #ddd;">Luxury Real Estate Development & Brokerage</p>
+        
+        <div class="flags">
+            <div class="flag-box">
+                <span class="flag-icon">🇹🇼</span>
+                <span class="flag-label">Service</span>
+            </div>
+            <div class="flag-box">
+                <span class="flag-icon">🇨🇦</span>
+                <span class="flag-label">Space</span>
+            </div>
+            <div class="flag-box">
+                <span class="flag-icon">🇨🇭</span>
+                <span class="flag-label">Precision</span>
+            </div>
+        </div>
+        
+        <br><br>
+        <a href="properties.html" class="btn-gold">View Collection</a>
+    </header>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Detail | Freyster.dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .split-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
+        .main-img { width: 100%; height: 60vh; object-fit: cover; margin-bottom: 30px; border: 1px solid #333; }
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 40px; }
+        .gallery img { width: 100%; height: 120px; object-fit: cover; cursor: pointer; border: 1px solid #222; transition: 0.2s; }
+        .gallery img:hover { border-color: var(--gold); }
+        .contact-box { background: #0a0a0a; padding: 30px; border: 1px solid var(--gold-dim); position: sticky; top: 120px; }
+        @media(max-width: 900px) { .split-layout { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">FREYSTER<span>.DEV</span></a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="properties.html" class="active">Properties</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- LOADING STATE -->
+        <div id="skeleton-loader">
+            <div class="skeleton sk-img" style="height: 60vh; margin-bottom: 30px;"></div>
+            <div class="skeleton sk-title" style="width: 40%;"></div>
+            <div class="skeleton sk-text"></div>
+            <div class="skeleton sk-text"></div>
+        </div>
+
+        <!-- REAL CONTENT (Hidden initially) -->
+        <div id="real-content" class="hidden">
+            <a href="properties.html" style="color: #666; margin-bottom: 20px; display: block;">&larr; Back to Collection</a>
+            
+            <img id="prop-img" src="" class="main-img">
+
+            <div class="split-layout">
+                <div>
+                    <h1 id="prop-title" style="font-size: 3rem; margin-bottom: 10px;"></h1>
+                    <h2 id="prop-price" class="text-gold" style="margin-bottom: 20px;"></h2>
+                    <p id="prop-loc" style="margin-bottom: 30px; color: #888;"></p>
+                    
+                    <h3 style="border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">Description</h3>
+                    <p id="prop-desc" style="line-height: 1.8; color: #ccc; margin-bottom: 40px;"></p>
+
+                    <h3 style="border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">Specifications</h3>
+                    <p id="prop-specs" style="color: #aaa;"></p>
+
+                    <div id="gallery-grid" class="gallery"></div>
+                </div>
+
+                <!-- SIDEBAR CONTACT -->
+                <div>
+                    <div class="contact-box">
+                        <h3 style="margin-bottom: 20px;">Request Viewing</h3>
+                        <form onsubmit="sendContact(event)">
+                            <!-- Hidden field to track which property -->
+                            <input type="hidden" name="interest" id="interest">
+                            
+                            <input type="text" name="name" placeholder="Full Name" required>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                            <textarea name="message" rows="4" placeholder="Message"></textarea>
+                            <button type="submit" class="btn-gold" style="width: 100%;">Inquire</button>
+                            <p id="form-status" style="margin-top: 15px; text-align: center; display: none;"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = loadPropertyDetail;
+    </script>
+</body>
+</html>
