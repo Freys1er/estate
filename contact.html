@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Freyster.dev</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Contact | THE FREY GROUP</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <nav>
-        <div class="logo"><a href="index.html">FREYSTER<span>.DEV</span></a></div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="properties.html">Properties</a>
-            <a href="contact.html" class="active">Contact</a>
+    <div class="nav-wrapper">
+        <nav class="nav-capsule">
+            <div class="logo"><a href="index.html">THE FREY GROUP</a></div>
+            <button class="menu-toggle"><span class="bar"></span><span class="bar"></span><span
+                    class="bar"></span></button>
+            <div class="nav-links">
+                <a href="properties.html">The Collection</a>
+                <a href="index.html#philosophy">Philosophy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <section class="hero-section" style="height: 50vh;">
+        <video class="video-bg" autoplay muted loop playsinline>
+            <source src="https://videos.pexels.com/video-files/5345784/5345784-uhd_2560_1440_25fps.mp4"
+                type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title" style="font-size: 4rem;">Initiate Dialogue.</h1>
         </div>
-    </nav>
+    </section>
 
-    <div class="container" style="max-width: 800px; text-align: center;">
-        <h2 class="section-title">Private Consultation</h2>
-        <p style="margin-bottom: 50px; color: #888;">
-            For general inquiries regarding real estate development, investment opportunities in Taiwan, Canada, or Switzerland, please contact us.
-        </p>
-
-        <form onsubmit="sendContact(event)" style="text-align: left;">
-            <input type="hidden" name="interest" value="General Contact Page">
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <input type="text" name="name" placeholder="FULL NAME" required>
-                <input type="email" name="email" placeholder="EMAIL ADDRESS" required>
+    <div class="container" style="max-width: 800px;">
+        <form style="display: grid; gap: 30px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <input type="text" placeholder="Full Name"
+                    style="padding: 20px; border: 1px solid #ddd; background: transparent;">
+                <input type="email" placeholder="Email Address"
+                    style="padding: 20px; border: 1px solid #ddd; background: transparent;">
             </div>
-            
-            <textarea name="message" rows="6" placeholder="HOW CAN WE ASSIST YOU?" required></textarea>
-            
-            <div style="text-align: center;">
-                <button type="submit" class="btn-gold">Send Request</button>
-            </div>
-            <p id="form-status" style="margin-top: 20px; text-align: center; display: none;"></p>
+            <textarea rows="6" placeholder="Message"
+                style="padding: 20px; border: 1px solid #ddd; background: transparent; width: 100%;"></textarea>
+            <button type="submit" class="btn-minimal" style="width: 100%; text-align: center;">Send Request</button>
         </form>
-
-        <div style="margin-top: 80px; border-top: 1px solid #222; padding-top: 40px;">
-            <p style="color: var(--gold); margin-bottom: 10px;">DIRECT</p>
-            <p><a href="mailto:freyster.dev@gmail.com">freyster.dev@gmail.com</a></p>
-            <br>
-            <p style="color: var(--gold); margin-bottom: 10px;">SOCIAL</p>
-            <p><a href="https://youtube.com/@freyster" target="_blank">@freyster</a></p>
-        </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

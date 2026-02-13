@@ -3,85 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Detail | Freyster.dev</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Property Details | THE FREY GROUP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        .split-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
-        .main-img { width: 100%; height: 60vh; object-fit: cover; margin-bottom: 30px; border: 1px solid #333; }
-        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 40px; }
-        .gallery img { width: 100%; height: 120px; object-fit: cover; cursor: pointer; border: 1px solid #222; transition: 0.2s; }
-        .gallery img:hover { border-color: var(--gold); }
-        .contact-box { background: #0a0a0a; padding: 30px; border: 1px solid var(--gold-dim); position: sticky; top: 120px; }
-        @media(max-width: 900px) { .split-layout { grid-template-columns: 1fr; } }
+        /* PAGE SPECIFIC STYLES */
+        /* Hero Image Background Logic */
+        .property-hero {
+            height: 70vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-color: #111;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .property-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); /* Dark Overlay for text */
+        }
+
+        .hero-text-layer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .detail-container {
+            max-width: 900px;
+            margin: -80px auto 0; /* Overlap effect */
+            background: white;
+            position: relative;
+            z-index: 10;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .spec-item span { display: block; font-size: 0.7rem; text-transform: uppercase; color: #888; letter-spacing: 1px; }
+        .spec-item strong { font-size: 1.2rem; margin-top: 5px; display: block; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo"><a href="index.html">FREYSTER<span>.DEV</span></a></div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="properties.html" class="active">Properties</a>
-            <a href="contact.html">Contact</a>
+    <!-- 1. HEADER (Injected via Script) -->
+
+    <!-- 2. HERO SECTION -->
+    <div id="hero-bg" class="property-hero">
+        <div class="hero-text-layer">
+            <span id="prop-loc" class="hero-subtitle">LOADING LOCATION...</span>
+            <h1 id="prop-title" class="hero-title">Loading Property...</h1>
         </div>
-    </nav>
-
-    <div class="container">
-        
-        <!-- LOADING STATE -->
-        <div id="skeleton-loader">
-            <div class="skeleton sk-img" style="height: 60vh; margin-bottom: 30px;"></div>
-            <div class="skeleton sk-title" style="width: 40%;"></div>
-            <div class="skeleton sk-text"></div>
-            <div class="skeleton sk-text"></div>
-        </div>
-
-        <!-- REAL CONTENT (Hidden initially) -->
-        <div id="real-content" class="hidden">
-            <a href="properties.html" style="color: #666; margin-bottom: 20px; display: block;">&larr; Back to Collection</a>
-            
-            <img id="prop-img" src="" class="main-img">
-
-            <div class="split-layout">
-                <div>
-                    <h1 id="prop-title" style="font-size: 3rem; margin-bottom: 10px;"></h1>
-                    <h2 id="prop-price" class="text-gold" style="margin-bottom: 20px;"></h2>
-                    <p id="prop-loc" style="margin-bottom: 30px; color: #888;"></p>
-                    
-                    <h3 style="border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">Description</h3>
-                    <p id="prop-desc" style="line-height: 1.8; color: #ccc; margin-bottom: 40px;"></p>
-
-                    <h3 style="border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px;">Specifications</h3>
-                    <p id="prop-specs" style="color: #aaa;"></p>
-
-                    <div id="gallery-grid" class="gallery"></div>
-                </div>
-
-                <!-- SIDEBAR CONTACT -->
-                <div>
-                    <div class="contact-box">
-                        <h3 style="margin-bottom: 20px;">Request Viewing</h3>
-                        <form onsubmit="sendContact(event)">
-                            <!-- Hidden field to track which property -->
-                            <input type="hidden" name="interest" id="interest">
-                            
-                            <input type="text" name="name" placeholder="Full Name" required>
-                            <input type="email" name="email" placeholder="Email Address" required>
-                            <textarea name="message" rows="4" placeholder="Message"></textarea>
-                            <button type="submit" class="btn-gold" style="width: 100%;">Inquire</button>
-                            <p id="form-status" style="margin-top: 15px; text-align: center; display: none;"></p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <script src="script.js"></script>
-    <script>
-        window.onload = loadPropertyDetail;
-    </script>
+    <!-- 3. DETAILS CARD -->
+    <div class="detail-container">
+        <div class="spec-grid">
+            <div class="spec-item"><span>Price</span><strong id="prop-price">-</strong></div>
+            <div class="spec-item"><span>Status</span><strong>Available</strong></div>
+            <div class="spec-item"><span>Type</span><strong>Private Estate</strong></div>
+        </div>
+
+        <div style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+            <p style="margin-bottom: 20px;">
+                This residence represents the pinnacle of modern architectural thought. Situated to maximize privacy while embracing the natural landscape, the structure utilizes a bespoke concrete blend and floor-to-ceiling glass to dissolve the barrier between interior and exterior.
+            </p>
+            <p>
+                Every corner has been meticulously calibrated for light. The flow of the space dictates a pace of life that is slower, more intentional. It is not merely a home; it is a statement of existence.
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="contact.html" class="btn-glass" style="background: #111; color: white; border-color: #111;">Request Private Viewing</a>
+        </div>
+    </div>
+
+    <!-- 4. FOOTER -->
+    <footer style="text-align: center; padding: 80px 0; color: #888; font-size: 0.8rem;">
+        <p>THE FREY GROUP • PRIVATE MANDATES</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

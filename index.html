@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FREYSTER.DEV | Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .hero {
-            height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .hero h1 { font-size: 4rem; margin-bottom: 20px; color: var(--gold); }
-        
-        .flags { display: flex; gap: 40px; margin-top: 40px; }
-        .flag-box { text-align: center; }
-        .flag-icon { font-size: 2.5rem; display: block; margin-bottom: 10px; }
-        .flag-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
-    </style>
+    <title>THE FREY GROUP | Global Real Estate</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-    <nav>
-        <div class="logo">FREYSTER<span>.DEV</span></div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="properties.html">Properties</a>
-            <a href="contact.html">Contact</a>
+    <!-- HERO SECTION -->
+    <div class="hero-wrapper">
+        <video id="hero-video" class="video-bg" autoplay muted loop playsinline poster="assets/fallback-image.jpg">
+            <!-- JS will inject the src here. 
+             The poster image is the ultimate fallback if JS fails. -->
+        </video>
+        <div class="hero-content">
+            <span class="hero-subtitle">Est. 2024 • Private Mandates</span>
+            <h1 class="hero-title">The Art of<br>Arrival.</h1>
+            <a href="properties.html" class="btn-glass">View Collection</a>
         </div>
-    </nav>
+    </div>
 
-    <header class="hero">
-        <h1>Global Standard.</h1>
-        <p style="font-size: 1.2rem; letter-spacing: 1px; color: #ddd;">Luxury Real Estate Development & Brokerage</p>
-        
-        <div class="flags">
-            <div class="flag-box">
-                <span class="flag-icon">🇹🇼</span>
-                <span class="flag-label">Service</span>
+    <!-- NARRATIVE SECTION -->
+    <section class="container reveal">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+            <div>
+                <span class="hero-subtitle" style="color:var(--accent-color);">The Philosophy</span>
+                <h2 class="section-title" style="margin-bottom: 20px;">Quiet Confidence.</h2>
+                <p style="line-height: 1.8; color: #555; margin-bottom: 30px;">
+                    True luxury does not shout. It is found in the stillness of a morning in Lugano, the clean lines of
+                    a Vancouver skyline, and the hidden courtyards of Taipei. We curate homes that are not merely
+                    assets, but sanctuaries for the modern mind.
+                </p>
+                <a href="philosophy.html" style="border-bottom: 1px solid #333; padding-bottom: 5px;">Read Our Story</a>
             </div>
-            <div class="flag-box">
-                <span class="flag-icon">🇨🇦</span>
-                <span class="flag-label">Space</span>
-            </div>
-            <div class="flag-box">
-                <span class="flag-icon">🇨🇭</span>
-                <span class="flag-label">Precision</span>
-            </div>
+            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1200"
+                style="width: 100%; border-radius: 4px;" alt="Interior">
         </div>
-        
-        <br><br>
-        <a href="properties.html" class="btn-gold">View Collection</a>
-    </header>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- TEASER GRID -->
+    <section class="container" style="background: white; width:100%; max-width:100%; padding: 100px 5%;">
+        <div class="text-center reveal">
+            <span class="hero-subtitle" style="color:#888;">Curated Holdings</span>
+            <h2 class="section-title">Latest Acquisitions</h2>
+        </div>
+        <div id="home-grid" class="grid">
+            <!-- JS populates this -->
+        </div>
+        <div class="text-center" style="margin-top: 60px;">
+            <a href="properties.html" class="btn-glass"
+                style="background: black; color: white; border-color: black;">Full Portfolio</a>
+        </div>
+    </section>
+
+    <footer style="background: #111; color: white; padding: 80px 5%; text-align: center;">
+        <h3 class="logo" style="margin-bottom: 20px;">THE FREY GROUP</h3>
+        <p style="opacity: 0.5; font-size: 0.8rem;">Taipei • Vancouver • Zurich</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
+
 </html>

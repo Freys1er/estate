@@ -1,0 +1,460 @@
+/* --- THE FREY GROUP: GLOBAL STYLESHEET V8.0 --- */
+/* RESET & BASE */
+:root {
+    --bg-color: #F5F5F7;
+    --text-color: #1D1D1F;
+    --accent-color: #B39A6A;
+    /* Muted Gold */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Inter', sans-serif;
+    --nav-height-expanded: 100px;
+    --nav-height-scrolled: 60px;
+    --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+/* --- THE MORPHING NAVIGATION (Fixed & Floating) --- */
+.nav-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.6s var(--ease-apple);
+    pointer-events: none;
+    /* Let clicks pass through wrapper to page */
+}
+
+.nav-capsule {
+    pointer-events: auto;
+    /* Re-enable clicks on the bar itself */
+    width: 100%;
+    height: var(--nav-height-expanded);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    transition: all 0.6s var(--ease-apple);
+
+    /* State 1: Top (Transparent, White Text for Video) */
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* State 2: Scrolled (Floating, White Background, Black Text) */
+.nav-wrapper.scrolled {
+    padding-top: 20px;
+}
+
+.nav-wrapper.scrolled .nav-capsule {
+    width: 90%;
+    max-width: 1200px;
+    height: var(--nav-height-scrolled);
+    margin: 0 auto;
+    border-radius: 100px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    color: var(--text-color);
+    /* Switch text to black */
+    border-bottom: none;
+}
+
+/* NAV ELEMENTS */
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
+.nav-center {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.desktop-links a {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-right: 20px;
+    opacity: 0.8;
+}
+
+.desktop-links a:hover {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+/* Icons (Cart/Profile) */
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+}
+
+/* HAMBURGER */
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: currentColor;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 5px;
+}
+
+.menu-toggle .bar {
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+    transition: 0.3s;
+}
+
+/* MOBILE MENU OVERLAY */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    color: white;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s var(--ease-apple);
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-overlay a {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin: 15px 0;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.mobile-overlay.active a {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- HERO & VIDEO --- */
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Video acts as background */
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7);
+    /* Darken video so text pops */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s forwards 0.5s;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 6rem);
+    /* Responsive text size */
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* --- BUTTONS --- */
+.btn-glass {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    transition: 0.3s;
+}
+
+.btn-glass:hover {
+    background: white;
+    color: black;
+}
+
+/* --- SECTIONS --- */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 5%;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* --- GRID SYSTEM --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    cursor: pointer;
+    transition: transform 0.6s var(--ease-apple);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img-wrap {
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: #eee;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s;
+}
+
+.card:hover .card-img {
+    transform: scale(1.05);
+}
+
+.card-meta {
+    padding: 25px;
+}
+
+.card-loc {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+.card-price {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* --- UTILITIES --- */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s var(--ease-apple);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .desktop-links {
+        display: none;
+    }
+
+    .nav-capsule {
+        padding: 0 20px;
+    }
+
+    .nav-left,
+    .nav-right {
+        flex: 0 0 auto;
+    }
+
+    .logo {
+        font-size: 0.9rem;
+    }
+}
+
+/* --- HERO & VIDEO UPDATES --- */
+
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #0e0e0e;
+    /* DEFAULT BLACK FALLBACK */
+}
+
+/* Ensure text is visible on black */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    /* Add a slight shadow to text for readability if video is bright */
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: 0;
+    /* Behind content */
+    opacity: 0;
+    /* Hidden until loaded by JS */
+    transition: opacity 1s ease;
+}
+
+/* ADD TO css/style.css */
+
+/* Animation for the Property Page Title */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure body has no margin */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Mobile Adjustment for Detail Page */
+@media (max-width: 768px) {
+    .detail-container {
+        margin: 0;
+        padding: 40px 20px;
+    }
+
+    .spec-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
